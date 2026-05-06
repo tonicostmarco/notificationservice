@@ -11,21 +11,21 @@ public class RabbitMQConfig {
     @Bean
     public Queue queuePaid() {
 
-        return QueueBuilder.durable("payments.paid").build(); //durable significa que resiste a restart
+        return QueueBuilder.durable("payments.paid").build();
 
     }
 
     @Bean
     public Queue queueFailed() {
 
-        return QueueBuilder.durable("payments.failed").build(); //durable significa que resiste a restart
+        return QueueBuilder.durable("payments.failed").build();
 
     }
 
     @Bean
     public Queue queuePending() {
 
-        return QueueBuilder.durable("payments.pending").build(); //durable significa que resiste a restart
+        return QueueBuilder.durable("payments.pending").build();]
 
     }
 
