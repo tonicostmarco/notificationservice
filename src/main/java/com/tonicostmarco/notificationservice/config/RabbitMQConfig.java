@@ -25,7 +25,7 @@ public class RabbitMQConfig {
     @Bean
     public Queue queuePending() {
 
-        return QueueBuilder.durable("payments.pending").build();]
+        return QueueBuilder.durable("payments.pending").build();
 
     }
 
