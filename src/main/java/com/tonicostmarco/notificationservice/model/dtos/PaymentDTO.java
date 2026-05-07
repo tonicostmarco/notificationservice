@@ -18,4 +18,6 @@ public record PaymentDTO(
         @Email(message = "Insert a valid e-mail")
         String customerEmail) {
 
+        public PaymentDTO {
+        }
 }

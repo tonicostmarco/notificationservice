@@ -18,6 +18,9 @@ public class Payment {
     private String customerEmail;
     private Instant processedAt;
 
+    public Payment() {
+    }
+
     public Payment(String id, String transactionId, Double amount, Status status, String customerEmail, Instant processedAt) {
         this.id = id;
         this.transactionId = transactionId;
