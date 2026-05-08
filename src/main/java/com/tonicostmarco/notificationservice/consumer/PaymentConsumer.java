@@ -34,8 +34,6 @@ public class PaymentConsumer {
 
         Payment payment = new Payment();
 
-        System.out.println("Existe? " + repository.existsByTransactionId(dto.transactionId()));
-        System.out.println("Total docs: " + repository.count());
         if (!repository.existsByTransactionId(dto.transactionId())) {
             turnIntoDto(dto, payment);
             repository.save(payment);
