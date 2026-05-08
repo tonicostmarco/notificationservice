@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/payments")
+@RequestMapping(value = "/payments/notify")
 public class PaymentController {
 
 
@@ -22,7 +22,12 @@ public class PaymentController {
 
     @PostMapping
     public ResponseEntity<PaymentDTO> receivePayment(@RequestBody @Valid PaymentDTO dto) {
-        template.convertAndSend("exchange", "payment." + dto.status(), dto);
+
+        System.out.println("Publicando mensagem: " + dto.transactionId() + " status: " + dto.status().toString().toLowerCase());
+
+        template.convertAndSend("exchange", "payment." + dto.status().toString().toLowerCase(), dto);
+
+        System.out.println("Mensagem enviada para o exchange");
 
         return ResponseEntity.ok(dto);
 
