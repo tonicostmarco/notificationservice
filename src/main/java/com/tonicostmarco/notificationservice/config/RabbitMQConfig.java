@@ -1,31 +1,32 @@
 package com.tonicostmarco.notificationservice.config;
 
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 
 @Configuration
 public class RabbitMQConfig {
 
-
     @Bean
     public Queue queuePaid() {
 
-        return QueueBuilder.durable("payments.paid").build();
+        return QueueBuilder.durable("payment.paid").build();
 
     }
 
     @Bean
     public Queue queueFailed() {
 
-        return QueueBuilder.durable("payments.failed").build();
+        return QueueBuilder.durable("payment.failed").build();
 
     }
 
     @Bean
     public Queue queuePending() {
 
-        return QueueBuilder.durable("payments.pending").build();
+        return QueueBuilder.durable("payment.pending").build();
 
     }
 
@@ -53,6 +54,13 @@ public class RabbitMQConfig {
     public Binding bindingPending(TopicExchange topic, Queue queuePending) {
 
         return BindingBuilder.bind(queuePending).to(topic).with("payment.pending");
+
+    }
+
+    @Bean
+    public JacksonJsonMessageConverter messageConverter() {
+
+      return new JacksonJsonMessageConverter();
 
     }
 }
